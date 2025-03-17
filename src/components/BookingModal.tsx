@@ -8,12 +8,21 @@ import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { v4 as uuidv4 } from 'uuid';
+import { Textarea } from '@/components/ui/textarea';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 interface BookingModalProps {
   professional: Professional;
   isOpen: boolean;
   onClose: () => void;
 }
+
+const expertiseLevels = [
+  { value: 'beginner', label: 'Beginner' },
+  { value: 'intermediate', label: 'Intermediate' },
+  { value: 'advanced', label: 'Advanced' }
+];
 
 const BookingModal: React.FC<BookingModalProps> = ({ 
   professional, 
@@ -23,6 +32,8 @@ const BookingModal: React.FC<BookingModalProps> = ({
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [bookingStatus, setBookingStatus] = useState<'input' | 'success'>('input');
+  const [description, setDescription] = useState('');
+  const [expertiseLevel, setExpertiseLevel] = useState('beginner');
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -38,6 +49,15 @@ const BookingModal: React.FC<BookingModalProps> = ({
   const handleBookAppointment = () => {
     if (!selectedDate || !selectedTime) return;
     
+    if (!description.trim()) {
+      toast({
+        title: "Description Required",
+        description: "Please provide a brief description of what you'd like to discuss.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     // In a real application, this would send the booking data to a backend
     try {
       // Create the appointment object
@@ -46,6 +66,8 @@ const BookingModal: React.FC<BookingModalProps> = ({
         professionalId: professional.id,
         date: selectedDate,
         time: selectedTime,
+        description,
+        expertiseLevel,
         status: 'confirmed',
         createdAt: new Date().toISOString()
       };
@@ -78,6 +100,8 @@ const BookingModal: React.FC<BookingModalProps> = ({
     setTimeout(() => {
       setSelectedDate(null);
       setSelectedTime(null);
+      setDescription('');
+      setExpertiseLevel('beginner');
       setBookingStatus('input');
     }, 300);
   };
@@ -136,7 +160,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
               </div>
               
               {selectedDate && (
-                <div>
+                <div className="mb-6">
                   <h4 className="mb-3 font-medium flex items-center">
                     <Clock size={16} className="mr-2 text-primary" />
                     Select a Time
@@ -165,6 +189,39 @@ const BookingModal: React.FC<BookingModalProps> = ({
                     }
                   </div>
                 </div>
+              )}
+              
+              {selectedTime && (
+                <>
+                  <div className="mb-6">
+                    <h4 className="mb-3 font-medium">Your Experience Level</h4>
+                    <RadioGroup
+                      value={expertiseLevel}
+                      onValueChange={setExpertiseLevel}
+                      className="flex flex-col space-y-2"
+                    >
+                      {expertiseLevels.map((level) => (
+                        <div key={level.value} className="flex items-center space-x-2">
+                          <RadioGroupItem value={level.value} id={level.value} />
+                          <Label htmlFor={level.value}>
+                            {level.label}
+                          </Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <h4 className="mb-3 font-medium">Tell us what you'd like to discuss</h4>
+                    <Textarea
+                      placeholder="Briefly describe what topics you'd like to cover in this consultation..."
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      className="resize-none"
+                      rows={4}
+                    />
+                  </div>
+                </>
               )}
             </div>
             
@@ -210,12 +267,18 @@ const BookingModal: React.FC<BookingModalProps> = ({
                   </div>
                 </div>
                 
-                <div className="flex items-start">
+                <div className="flex items-start mb-3">
                   <Clock size={16} className="mt-0.5 mr-3 text-muted-foreground" />
                   <div>
                     <div className="text-sm font-medium">{selectedTime}</div>
                     <div className="text-xs text-muted-foreground">Time</div>
                   </div>
+                </div>
+                
+                <div className="text-sm mt-2 pt-2 border-t border-border">
+                  <p className="font-medium mb-1">Experience Level: <span className="font-normal">{expertiseLevel}</span></p>
+                  <p className="text-xs text-muted-foreground mb-1">Description:</p>
+                  <p className="text-sm">{description}</p>
                 </div>
               </div>
             </div>

@@ -1,17 +1,13 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Users, BookOpen, Calendar, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, Users, BookOpen, Calendar, ArrowUpRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import ProfessionalCard from '@/components/ProfessionalCard';
-import TestimonialCard from '@/components/TestimonialCard';
-import FaqSection from '@/components/FaqSection';
 import BlogCard from '@/components/BlogCard';
 import { professionals } from '@/data/professionals';
-import { testimonials } from '@/data/testimonials';
-import { faqs } from '@/data/faqs';
 import { blogPosts } from '@/data/blogs';
 import BookingModal from '@/components/BookingModal';
 
@@ -30,8 +26,6 @@ const Index = () => {
   };
   
   const featuredProfessionals = professionals.slice(0, 4);
-  const featuredTestimonials = testimonials.slice(0, 3);
-  const featuredFaqs = faqs.slice(0, 6);
   const featuredBlogPosts = blogPosts.slice(0, 3);
   
   return (
@@ -189,63 +183,6 @@ const Index = () => {
                 
                 <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-primary/10 rounded-full z-[-1]"></div>
                 <div className="absolute -top-8 -left-8 w-24 h-24 bg-primary/10 rounded-full z-[-1]"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* Testimonials Section */}
-        <section className="py-20 bg-secondary/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl font-bold mb-4">What Our Clients Say</h2>
-              <p className="text-muted-foreground text-lg text-pretty">
-                Hear from professionals who have transformed their careers with our guidance and expertise.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featuredTestimonials.map((testimonial) => (
-                <TestimonialCard 
-                  key={testimonial.id} 
-                  testimonial={testimonial} 
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        {/* FAQ Section */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              <div>
-                <span className="inline-block py-1 px-3 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">
-                  FAQs
-                </span>
-                <h2 className="text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-                <p className="text-muted-foreground text-lg mb-8">
-                  Find answers to common questions about our career guidance services and how we can help you achieve your professional goals.
-                </p>
-                
-                <img 
-                  src="/placeholder.svg" 
-                  alt="Career Guidance" 
-                  className="rounded-xl shadow-lg" 
-                />
-              </div>
-              
-              <div>
-                <FaqSection faqs={featuredFaqs} />
-                
-                <div className="mt-10">
-                  <Link 
-                    to="/about#faqs" 
-                    className="inline-flex items-center text-primary font-medium gap-1 hover:gap-2 transition-all"
-                  >
-                    View all FAQs <ArrowRight size={18} />
-                  </Link>
-                </div>
               </div>
             </div>
           </div>

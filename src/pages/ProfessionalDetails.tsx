@@ -6,6 +6,7 @@ import { professionals } from '@/data/professionals';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BookingModal from '@/components/BookingModal';
+import ReviewSection from '@/components/ReviewSection';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -100,6 +101,9 @@ const ProfessionalDetails: React.FC = () => {
                       ))}
                     </ul>
                   </div>
+                  
+                  {/* Review Section */}
+                  <ReviewSection professional={professional} />
                 </div>
               </div>
             </div>
