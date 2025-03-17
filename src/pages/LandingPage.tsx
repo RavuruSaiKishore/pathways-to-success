@@ -47,12 +47,12 @@ const LandingPage: React.FC = () => {
     
     toast({
       title: "Information submitted",
-      description: "Thank you for your interest. Redirecting to signup...",
+      description: "Thank you for your interest. Redirecting to home page...",
     });
     
-    // Redirect to signup page after a short delay
+    // Redirect to home page after a short delay
     setTimeout(() => {
-      navigate('/login');
+      navigate('/home');
     }, 1500);
   };
 
