@@ -16,6 +16,7 @@ import Services from "./pages/Services";
 import Professionals from "./pages/Professionals";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
+import Wallet from "./pages/Wallet";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/my-appointments" element={<MyAppointments />} />
+            <Route path="/wallet" element={<Wallet />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
