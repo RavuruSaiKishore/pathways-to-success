@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -13,6 +12,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 const Login: React.FC = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [signupName, setSignupName] = useState('');
@@ -20,14 +20,32 @@ const Login: React.FC = () => {
   const [signupPassword, setSignupPassword] = useState('');
   const [signupConfirmPassword, setSignupConfirmPassword] = useState('');
   
+  useEffect(() => {
+    // If already logged in, redirect to home
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      navigate('/home');
+    }
+  }, [navigate]);
+  
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real app, this would authenticate with a backend
     if (loginEmail && loginPassword) {
+      // Store user info in localStorage
+      const userInfo = {
+        email: loginEmail,
+        name: loginEmail.split('@')[0], // Using email prefix as name for demo
+      };
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      
       toast({
         title: "Login Successful",
         description: "Welcome back to CG Lines!",
       });
+      
+      // Redirect to home page
+      navigate('/home');
     } else {
       toast({
         title: "Login Failed",
@@ -58,10 +76,20 @@ const Login: React.FC = () => {
       return;
     }
     
+    // Store user info in localStorage
+    const userInfo = {
+      email: signupEmail,
+      name: signupName,
+    };
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    
     toast({
       title: "Registration Successful",
       description: "Welcome to CG Lines! Your account has been created.",
     });
+    
+    // Redirect to home page
+    navigate('/home');
   };
   
   return (

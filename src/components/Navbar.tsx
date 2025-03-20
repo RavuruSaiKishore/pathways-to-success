@@ -1,13 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
   
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -28,10 +29,14 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     // Close mobile menu when route changes
     setIsOpen(false);
+    
+    // Check if user is logged in
+    const userInfo = localStorage.getItem('userInfo');
+    setIsLoggedIn(!!userInfo);
   }, [location]);
   
   const navLinks = [
-    { name: 'Home', path: '/' },
+    { name: 'Home', path: '/home' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Professionals', path: '/professionals' },
@@ -53,7 +58,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <Link 
-            to="/" 
+            to="/home" 
             className="flex items-center"
           >
             <span className="text-xl font-display font-bold tracking-tight">
@@ -76,12 +81,22 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             <ThemeToggle />
-            <Link
-              to="/login"
-              className="btn-primary ml-4"
-            >
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <Link
+                to="/profile"
+                className="btn-primary ml-4 flex items-center gap-2"
+              >
+                <User size={18} />
+                Profile
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="btn-primary ml-4"
+              >
+                Login
+              </Link>
+            )}
           </nav>
           
           {/* Mobile Navigation Button */}
@@ -118,12 +133,22 @@ const Navbar: React.FC = () => {
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/login"
-            className="btn-primary self-start mt-4"
-          >
-            Login
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              to="/profile"
+              className="btn-primary self-start mt-4 flex items-center gap-2"
+            >
+              <User size={18} />
+              Profile
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="btn-primary self-start mt-4"
+            >
+              Login
+            </Link>
+          )}
         </nav>
       </div>
     </header>

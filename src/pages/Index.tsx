@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "@/components/Hero";
@@ -7,8 +8,6 @@ import Navbar from "@/components/Navbar";
 import { professionals } from "@/data/professionals";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import BlogCard from "@/components/BlogCard";
-import { blogs } from "@/data/blogs";
 
 const Index: React.FC = () => {
   return (
@@ -29,24 +28,6 @@ const Index: React.FC = () => {
           <div className="text-center mt-6">
             <Link to="/professionals">
               <Button variant="secondary">View All Professionals</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-center mb-8">
-            Latest Blog Posts
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogs.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
-            ))}
-          </div>
-          <div className="text-center mt-6">
-            <Link to="/blogs">
-              <Button variant="secondary">Read More on the Blog</Button>
             </Link>
           </div>
         </div>

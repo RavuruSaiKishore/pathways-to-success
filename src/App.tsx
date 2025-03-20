@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import LandingPage from "./pages/LandingPage";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
+import UserProfile from "./pages/UserProfile";
 import NotFound from "./pages/NotFound";
 import ProfessionalDetails from "./pages/ProfessionalDetails";
 import MyAppointments from "./pages/MyAppointments";
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<Index />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/professionals" element={<Professionals />} />
