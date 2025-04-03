@@ -61,9 +61,11 @@ const Navbar: React.FC = () => {
             to="/home" 
             className="flex items-center"
           >
-            <span className="text-xl font-display font-bold tracking-tight">
-              <span className="text-primary">CG</span> Lines
-            </span>
+            <img 
+              src="/lovable-uploads/c75e382f-5bec-47b3-8afa-3c7358e4e8e1.png" 
+              alt="GuidEX Logo" 
+              className="h-10"
+            />
           </Link>
           
           {/* Desktop Navigation */}

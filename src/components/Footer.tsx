@@ -12,9 +12,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           <div className="col-span-1 lg:col-span-1">
             <Link to="/" className="inline-block mb-6">
-              <span className="text-2xl font-display font-bold tracking-tight">
-                <span className="text-primary">CG</span> Lines
-              </span>
+              <img 
+                src="/lovable-uploads/c75e382f-5bec-47b3-8afa-3c7358e4e8e1.png" 
+                alt="GuidEX Logo" 
+                className="h-12"
+              />
             </Link>
             <p className="text-muted-foreground mb-6 max-w-sm">
               Guiding your career journey with expert advice, personalized mentorship, and strategic insights for professional success.
@@ -129,7 +131,7 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 sm:mb-0">
-            © {currentYear} CG Lines. All rights reserved.
+            © {currentYear} GuidEX. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
