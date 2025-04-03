@@ -19,28 +19,35 @@ const Hero: React.FC = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="order-2 lg:order-1 animate-fade-in">
-            <span className="inline-block py-1 px-3 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">
+          <div className="order-2 lg:order-1">
+            <span className="inline-block py-1 px-3 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6 animate-fade-in opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               Career Guidance Platform
             </span>
             <h1 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-tight text-foreground mb-6 text-balance">
-              Chart Your Course to Career <span className="text-primary">Success</span>
+              <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
+                Chart Your Course to
+              </span>
+              <br />
+              <span className="text-primary relative inline-block animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+                Career Success
+                <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
+              </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg text-pretty">
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg text-pretty animate-fade-in opacity-0" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
               Personalized guidance, expert mentorship, and strategic insights to help you navigate your professional journey with confidence.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/professionals" className="btn-primary px-8 py-3 rounded-full text-base gap-2">
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in opacity-0" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
+              <Link to="/professionals" className="btn-primary px-8 py-3 rounded-full text-base gap-2 hover-scale">
                 Find a Professional
                 <ArrowRight size={18} />
               </Link>
-              <Link to="/services" className="btn-outline px-8 py-3 rounded-full text-base">
+              <Link to="/services" className="btn-outline px-8 py-3 rounded-full text-base hover-scale">
                 Explore Services
               </Link>
             </div>
             
-            <div className="mt-12 flex items-center gap-6">
+            <div className="mt-12 flex items-center gap-6 animate-fade-in opacity-0" style={{ animationDelay: '1.2s', animationFillMode: 'forwards' }}>
               <div className="flex -space-x-4">
                 {[1, 2, 3, 4].map((i) => (
                   <div 
@@ -71,7 +78,7 @@ const Hero: React.FC = () => {
           </div>
           
           <div className="order-1 lg:order-2 flex justify-center">
-            <div className="relative w-full max-w-md h-[500px] glass-card rounded-2xl overflow-hidden animate-fade-in shadow-xl">
+            <div className="relative w-full max-w-md h-[500px] glass-card rounded-2xl overflow-hidden shadow-xl animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
               <img 
                 src="/placeholder.svg" 
                 alt="Career professionals guiding students" 
